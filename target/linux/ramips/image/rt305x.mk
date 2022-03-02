@@ -259,6 +259,18 @@ define Device/dir-600-b1
 endef
 TARGET_DEVICES += dir-600-b1
 
+define Device/dir-412
+  DTS := DIR-412
+  BLOCKSIZE := 4k
+  IMAGE_SIZE := $(ralink_default_fw_size_4M)
+  IMAGES += factory.bin
+  IMAGE/factory.bin := \
+        $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | wrg-header wrgn23_dlwbr_dir412
+  DEVICE_TITLE := D-Link DIR-412
+  DEVICE_PACKAGES := kmod-ledtrig-netdev kmod-ledtrig-timer
+endef
+TARGET_DEVICES += dir-412
+
 define Device/dir-610-a1
   $(Device/seama)
   DTS := DIR-610-A1
